@@ -20,19 +20,63 @@ This app is for two types of users: a visitor and a logged-in user
 
 ###### (Example) Login Page (Importance - High)
 * As a returning register user
-* I want to enter my password and username to use this app,
+* I want to enter my password and username to log into this app,
 * So I can have access to my account.
 
 ###### (Example) Sign Up (Importance - High)
-* As a visitor
+* As a new user
 * I want to register to use this app
 * So I can create a personal account.
 
+###### Project List (Importance - High)
+* As a logged-in user,
+* I want to be able to view the contents of my project(s)
+* So I can decide what project I want to navigate to.
+
+###### Project Page (Importance - High)
+* As a logged-in user,
+* I want to be able to submit a new sentence into a project,
+* so I can see my project added onto.
+
+###### User Preferences (Importance - Medium)
+* As a logged-in user,
+* I want to be able to update my account cridentials,
+* So I can be able to log in.
+
 ###### (Example) Home Page (Importance - Medium)
 * As a logged-in user,
-* I want to be able to preview the content of the app,
-* So i can decide what section I want to navigate to.
+* I want to be able to preview the content and sections of the app,
+* So I can decide what section I want to navigate to.
 
+###### Dashboard (Importance - Medium)
+* As a logged-in user,
+* I want to be able to see my account statistics and previous posts,
+* so I can decide what information I find important.
+
+###### Project Sentence Thread (Importance - Medium)
+* As a logged-in user,
+* I want to be able to edit previously submitted content,
+* So I can update the content of my project.
+
+###### Project Sentence Thread (Importance - Medium)
+* As a logged-in user,
+* I want to be able to edit the sharing preferences on my project,
+* So I can decide if I want my sentences to be visible to others.
+
+###### Home Page (Importance - Medium)
+* As a logged-in user,
+* I want to be able to view recent public posts made by users,
+* So I can get inspiration for my project(s).
+
+###### Project Page (Importance - Low)
+* As a logged-in user,
+* I want to be able to 'pin' a project,
+* So I can access it directly from my Home Page
+
+###### User Preferences (Importance - Low)
+* As a logged-in user,
+* I want to be able to choose app color themes,
+* So the app is more accessible.
 
 
 ### 3. Functionality (to do now)
@@ -60,19 +104,36 @@ Register Page
 ### 6. Front-end Structure - React Components Map (to do later)
 * (Example) __Index.js__ (stateless)
     * __App.js__ (stateful)
-        * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
-            * __Login.js__ (stateful) -
-            * __Register.js__ (stateful) -
+        * __LandingPage.js__ (stateless)
+            * __Login.js__ (stateful) - connect to Users table (nickname, email, password)
+            * __Register.js__ (stateful) - connect to Users table (nickname, email, password)
         * __Navbar.js__ (stateless) -
+        * __Projects.js__ (stateful) - connect to Projects table (id, project_name, created_date)
+        * __SentenceThread.js__ (stateful) - connect to Sentences table (id, created_date, content)
 
 
 
-### 7. Back-end Structure - Business Objects (to do later)
-* (Example) Users (database table)
+
+### 7. Back-end Structure - Business Objects
+* Users (database table)
     * id (auto-generated)
-    * username (email validation)
+    * nickname (minimum 5 characters, no special chars, no initial/trailing space validation)
+    * email (must be unique, email validation)
     * password (at least 8 chars, at least one alpha and a special character validation)
 
+* Projects (database table)
+    * id (auto-generated)
+    * user_id (foreign key connected with user table)
+    * project_name (minimum 1 character, no spaces validation) [if I'm going to have clean conversion to url]
+    * date_created (now())
+    * is_archived (default false)
+
+* Sentences (database table)
+    * id (auto-generated)
+    * project_id (foreign key connected with project table)
+    * date_created (now())
+    * content (TEXT NOT NULL, no trailing or leading space validation)
+    * is_archived (default false)
 
 
 ### 8. API Documentation (to do later)
