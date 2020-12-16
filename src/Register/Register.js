@@ -18,7 +18,7 @@ class Register extends Component {
     
     //reset submit errors:
     this.setState({ submitError: null})
-    //console.log(nickname, password, email);
+    console.log(nickname, password, email);
 
     if(!this.validForm()){
       this.setState({ 
@@ -35,13 +35,17 @@ class Register extends Component {
         if(res.error){
           throw res;
         }
+        if(!res.ok){
+          console.log('SPOOKY >>>>>>>>>>>>', res);
+        }
         TokenService.saveAuthToken(res.authToken);
         TokenService.saveUserId(res.id);
-        window.location = '/landing'
+        window.location = '/'
       })
       .catch(res => {
+        console.log('error: ', res);
         this.setState({
-        submitError: <p className='error-message'>{`${res.error}`}</p>
+        submitError: `${res.error.message}`
         })
       })
     }
@@ -53,7 +57,7 @@ class Register extends Component {
     const messages = this.compileFormErrors(); 
 
     for (const key in messages) {
-      if(messages[key] && messages[key] !== ''){
+      if(messages[key] && messages[key] !== '' && key !== 'submitMessage'){
         return false;
       }
     }
@@ -62,9 +66,11 @@ class Register extends Component {
 
   //minimum 5 characters, no special chars, no initial/trailing space validation
   validateNickname = (nick) => {
-    const restrictions = RegExp();
+    const restriction1 = /\W/  //[!@#$%&*()_+=|<>?{}\[\]~-]/;
+    const restriction2 = /\s/
+
     let problems = nick.length < 5 ? 'Nickname must be at least 5 characters. ' : '';
-    problems += restrictions.test(nick) ? '' : '\nNickname cannot contain special characters or spaces. ';
+    problems += nick.match(restriction1) || nick.match(restriction2) ? '\nNickname cannot contain special characters or spaces. ' : '' ;
 
     return problems === '' ? null : (
     <p className='error-message'>{problems}</p>
@@ -73,9 +79,14 @@ class Register extends Component {
 
   //at least 8 chars, at least one alpha and a special character validation
   validatePass = (pass) => {
-    const restrictions = RegExp();
+    const patty = /[!@#$%&*()_+=|<>?{}[\]~-]/;
+    const specialExists = pass.match(patty);
+
+    const pat = /[A-Z]/;
+    const capitalExists = pass.match(pat);
+
     let problems = pass.length < 8 ? 'Password must be at least 8 characters. ' : '';
-    problems += restrictions.test(pass) ? '': '\nPassword must have at least 1 capital and 1 special character. ';
+    problems += specialExists && capitalExists ? '': '\nPassword must have at least 1 capital and 1 special character. ';
 
     return problems === '' ? null : (
     <p className='error-message'>{problems}</p>
@@ -89,7 +100,9 @@ class Register extends Component {
   }
 
   validateEmail = (email) => {
-    const restrictions = RegExp();
+    const restrictions = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if(!restrictions.test(email))
+      return 'Invalid email';
     return restrictions.test(email) ? null : (
       <p className='error-message'>Must be a valid email address. </p>
       );
@@ -139,7 +152,7 @@ class Register extends Component {
     } = this.compileFormErrors(); 
 
     return (
-      <div id='register-page'>
+      <div id='register-container'>
       <Link to='/' className='button-link'>
             Go back
       </Link>

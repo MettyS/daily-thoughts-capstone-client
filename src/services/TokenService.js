@@ -17,12 +17,12 @@ const TokenService = {
     window.sessionStorage.removeItem(config.TOKEN_KEY)
     sessionStorage.clear();
   },
-  /*saveUserId(user_id) {
+  saveUserId(user_id) {
     return window.sessionStorage.setItem('user_id', user_id);
   },
   getUserId(user_id) {
     return window.sessionStorage.getItem('user_id', user_id);
-  }*/
+  }
 }
 
 
