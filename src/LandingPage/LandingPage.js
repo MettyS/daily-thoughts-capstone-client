@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './LandingPage.css'
 
 class LandingPage extends Component {
 
@@ -18,11 +19,15 @@ class LandingPage extends Component {
             Login
           </Link>
         </div>
-        {'Project title, background image, link to register/login form'}
       </div>
 
       <div id='about' className='reg-div'>
-        {'description of website'}
+        <div className='spacing-div'></div>
+        <div className='inner-spaccing-div'>
+          <p>Daily Thoughts is your tool for getting through writer's block, keeping track of your thoughts and ideas, and so much more.</p>
+          <p>Get started right away to start documenting your process of creation</p>
+        </div>
+        <div className='spacing-div'></div>
       </div>
     </div>);
   }

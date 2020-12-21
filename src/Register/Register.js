@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../services/AuthService'
 import TokenService from '../services/TokenService';
+import './Register.css'
 
 class Register extends Component {
   state = {
@@ -157,37 +158,41 @@ class Register extends Component {
             Go back
       </Link>
       <form className='register-form' onSubmit={this.handleSubmit}>
+        <div className='input-fields'>
         {submitMessage}
         <div className='form-field'>
+          {nicknameMessage}
           <label htmlFor='register-nickname'>Nickname</label>
           <input name='nickname' type='text' placeholder='BobbyJoe' id='register-nickname' onChange={e => this.setState({nickname: {value: e.target.value, touched: true} })} required />
-          {nicknameMessage}
         </div>
 
         <div className='form-field'>
+        {emailMessage}
           <label htmlFor='register-email'>Email</label>
           <input name='email' type='text' placeholder='BobbyJoe@gmail.com' id='register-email' onChange={e => this.setState({email: {value: e.target.value, touched: true} })} required />
-          {emailMessage}
         </div>
 
         <div className='form-field'>
+        {passwordMessage}
           <label htmlFor='register-password'>Password</label>
           <input name='password' type='text' id='register-password' onChange={e => this.setState({password: {value: e.target.value, touched: true} })} required />
-          {passwordMessage}
         </div>
 
         <div className='form-field'>
+        {passwordMatchMessage}
           <label htmlFor='register-repeat-password'>Repeat Password</label>
           <input name='repeat-password' type='text' id='register-repeat-password' onChange={e => this.setState({repeatPassword: {value: e.target.value, touched: true} })} required />
-          {passwordMatchMessage}
         </div>
 
+        </div>
+        
         <div className='form-field'>
-          <button type='submit' className='button'>Register</button>
+          <button type='submit' className='button button-link'>Register</button>
           <Link to='/login' className='button-link'>
             Already have an account?
           </Link>
         </div>
+        
       </form>
       </div>
     )

@@ -5,6 +5,8 @@ import ProjectListMenu from '../ProjectListMenu/ProjectListMenu';
 import TokenService from '../services/TokenService'
 import config from '../config'
 
+import './ProjectList.css'
+
 class ProjectList extends Component {
 
   state = {
@@ -30,6 +32,15 @@ class ProjectList extends Component {
       console.log('error in getting projects: ',er);
     })
   }
+
+  handleNewProject = (project) => {
+    console.log('the project you are trying to add to the state is: ', project);
+    let tempprojects = this.state.projects;
+    tempprojects.push(project);
+    this.setState({
+      projects: tempprojects
+    })
+  }
   
 
   render() {
@@ -47,7 +58,7 @@ class ProjectList extends Component {
           id={project.id} 
           project_name={project.project_name}
           user_id={project.user_id}
-          last_updated={project.last_updated.toString()}
+          last_updated={project.last_updated}
           key={keyNum}
           />
         )
@@ -55,7 +66,7 @@ class ProjectList extends Component {
 
     return (
       <div className='projectlist-container'>
-        <ProjectListMenu />
+        <ProjectListMenu handleNewProject={(project) => this.handleNewProject(project)}/>
         {
           this.state.loading ? (<p>Loading...</p>)
           : ( items )

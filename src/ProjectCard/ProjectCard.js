@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import './ProjectCard.css'
 
 class ProjectCard extends Component {
 
@@ -20,7 +21,7 @@ class ProjectCard extends Component {
         </div>
         <div className='right-panel'>
         <button 
-        className='card-link-btn'
+        className='button button-link'
         type='button'
         onClick={this.handleButtonClick}>See More</button>
         </div>

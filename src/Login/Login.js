@@ -58,6 +58,7 @@ class Login extends Component {
       </Link>
       <form className='login-form' onSubmit={this.handleSubmit}>
         {submitError}
+        <div className='input-fields'>
         <div className='form-field'>
           <label htmlFor='login-nickname'>Nickname</label>
           <input name='nickname' type='text' placeholder='BobbyJoe' id='login-nickname' onChange={e => this.setState({nickname: {value: e.target.value} })} />
@@ -68,8 +69,10 @@ class Login extends Component {
           <input name='password' type='text' id='login-password' onChange={e => this.setState({password: {value: e.target.value} })} />
         </div>
 
+        </div>
+
         <div className='form-field'>
-          <button type='submit' className='button'>Login</button>
+          <button type='submit' className='button button-link'>Login</button>
           <Link to='/register' className='button-link'>
             Don't have an account?
           </Link>

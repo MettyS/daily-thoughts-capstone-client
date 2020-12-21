@@ -5,6 +5,7 @@ import ErrorPage from './ErrorPage/ErrorPage';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import ProjectListPage from './ProjectListPage/ProjectListPage';
+import ProjectPage from './ProjectPage/ProjectPage';
 //import ProjectListMenu from './ProjectListMenu/ProjectListMenu'
 //import ProjectPage from './ProjectPage';
 //import ErrorBoundary from './ErrorBoundary/Errorboundary';
@@ -21,13 +22,13 @@ class App extends Component {
     return (
       <div className='App'>
         <main>
-          {'Daily Thoughts'}
           <BrowserRouter>
             <Switch>
               <Route exact path='/' component={LandingPage} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/project-list' component={ProjectListPage} />
+              <Route path='/project/:projectId' component={ProjectPage} />
               <Route component={ErrorPage} />
             </Switch>
           </BrowserRouter>

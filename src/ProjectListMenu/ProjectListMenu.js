@@ -36,7 +36,8 @@ class ProjectList extends Component {
       if(res.error){
         console.log('this shouldnt reach this line right');
       }
-      console.log('YAY I THINK WE DID IT');
+      console.log('YAY I THINK WE DID IT, the added project is: ', res);
+      this.props.handleNewProject(res);
       //window.location('/project-list');
     })
     .catch( er => {
@@ -49,12 +50,14 @@ class ProjectList extends Component {
     return (
       <div className='projectlistmenu-container'>
         <form className='projectlist-form' onSubmit={this.handleSubmit}>
+          <div className='input-fields'>
           <div className='form-field'>
             <label htmlFor='create-project'>New Project:</label>
             <input name='name' type='text' placeholder='MyProject' id='create-project' required />
           </div>
-
-          <button type='submit' className='button'>Create</button>
+          </div>
+          <button type='submit' className='button button-link'>Create</button>
+          
 
         </form>
       </div>
