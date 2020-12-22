@@ -11,7 +11,7 @@ class ProjectCard extends Component {
   }
 
   render() {
-    const { id, project_name, user_id, last_updated } = this.props;
+    const { id, project_name, last_updated } = this.props;
 
     return (
       <div className='projectcard' id={`${id}`}>

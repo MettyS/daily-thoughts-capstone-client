@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
-import ProjectListMenu from '../ProjectListMenu/ProjectListMenu';
 import ProjectList from '../ProjectList/ProjectList';
 import TokenService from '../services/TokenService';
-import config from '../config';
 
 class ProjectListPage extends Component {
   state = {
-    loading: true,
-    projects: []
+    loading: true
   }
 
   componentDidMount() {
@@ -22,18 +18,25 @@ class ProjectListPage extends Component {
       return;
     }
 
+    this.setState({
+      loading: false
+    })
+
   }
 
 
 
   render() {
+    const pageContents = ( this.state.loading 
+      ? <div className='projectlistpage-container'></div>
+      : (<div className='projectlistpage-container'>
+          <NavBar />
+          <ProjectList />
+        </div>)
+
+    )
     
-    return (
-      <div className='projectlistpage-container'>
-        <NavBar />
-        <ProjectList />
-      </div>
-    );
+    return pageContents
   }
 
 }

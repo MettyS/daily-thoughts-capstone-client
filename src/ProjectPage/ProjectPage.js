@@ -13,6 +13,7 @@ import './ProjectPage.css'
 class ProjectPage extends Component {
 
   state = {
+    loadingpage: true,
     loading: true,
     error: null,
     sentences: [],
@@ -26,6 +27,9 @@ class ProjectPage extends Component {
       window.location = '/';
       return;
     }
+    this.setState({
+      loadingpage: false
+    })
 
     const url = config.API_ENDPOINT;
     const user_id = TokenService.getUserId();
@@ -33,7 +37,7 @@ class ProjectPage extends Component {
     fetch(`${url}/project/${projectId}`)
     .then( res => res.json())
     .then( project => {
-      if(!(project.user_id == user_id)){
+      if(!(project.user_id === parseInt(user_id))){
         console.log('youre not allowed to be here!!!, the user_id is: ', project.user_id);
         console.log('but your id is: ', user_id)
         window.location('/project-list');
@@ -44,7 +48,7 @@ class ProjectPage extends Component {
         .then( res => res.json())
         .then( sentences => {
 
-          const ourSentences = sentences.filter(sen => {return sen.project_id == projectId;})
+          const ourSentences = sentences.filter(sen => {return sen.project_id === parseInt(projectId)})
           console.log('sentences for this project are: ', ourSentences)
           this.setState({
             loading: false,

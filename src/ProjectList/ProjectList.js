@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import ProjectListMenu from '../ProjectListMenu/ProjectListMenu';
 import TokenService from '../services/TokenService'
@@ -22,7 +21,7 @@ class ProjectList extends Component {
     .then( res => res.json())
     .then( projects => {
       console.log('got the projects!!! >> ', projects);
-      const ourProjects = projects.filter(project => {return project.user_id == TokenService.getUserId()})
+      const ourProjects = projects.filter(project => {return project.user_id === parseInt(TokenService.getUserId(),10)})
       this.setState({
         loading: false,
         projects: ourProjects

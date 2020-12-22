@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Link, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Login from './Login/Login';
@@ -11,7 +11,6 @@ import ProjectPage from './ProjectPage/ProjectPage';
 //import ErrorBoundary from './ErrorBoundary/Errorboundary';
 //import ApliContext from './ApiContext';
 
-import config from './config';
 
 class App extends Component {
   state = {
