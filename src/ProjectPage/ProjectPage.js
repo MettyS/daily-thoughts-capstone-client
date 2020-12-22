@@ -17,7 +17,7 @@ class ProjectPage extends Component {
     loading: true,
     error: null,
     sentences: [],
-    projectId: this.props.match.params
+    projectId: (this.props.match ? this.props.match.params : -1)
   }
 
   componentDidMount = () => {

@@ -16,16 +16,30 @@ class ProjectList extends Component {
   }
 
   componentDidMount = () => {
+    if(!TokenService.hasAuthToken()) {
+      console.log('sending you back to a safe place');
+      window.location = '/';
+      return;
+    }
+
     const url = config.API_ENDPOINT;
     fetch(`${url}/project`)
-    .then( res => res.json())
+    .then( res => {
+      if(res.error){
+        throw res
+      }
+      return res.json()
+    })
     .then( projects => {
+
       console.log('got the projects!!! >> ', projects);
-      const ourProjects = projects.filter(project => {return project.user_id === parseInt(TokenService.getUserId(),10)})
+      const user_id = parseInt(TokenService.getUserId(),10);
+      const ourProjects = projects.filter(project => {return project.user_id === (user_id ? user_id : 1) })
       this.setState({
         loading: false,
         projects: ourProjects
       });
+
     })
     .catch( er => {
       console.log('error in getting projects: ',er);

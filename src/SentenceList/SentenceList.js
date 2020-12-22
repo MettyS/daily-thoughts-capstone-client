@@ -9,12 +9,13 @@ class SentenceList extends Component {
   }
   render() {
     let keyNum = 0;
-    const items = this.props.sentences.map(sentence => {
+    const items = this.props.sentences ? this.props.sentences.map(sentence => {
       keyNum++;
       return (
         <SentenceCard content={sentence.content} key={keyNum} />
       )
     })
+    : '' ;
 
     return (
       <div className='sentencelist-container'>
