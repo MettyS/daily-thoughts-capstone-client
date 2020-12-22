@@ -13,10 +13,12 @@ class ProjectListPage extends Component {
   }
 
   componentDidMount() {
-    console.log('do they have a token? ', TokenService.hasAuthToken());
-    console.log('the token is, ',TokenService.getAuthToken());
+    console.log('do they have a token?', TokenService.hasAuthToken());
+    console.log('the token is:',TokenService.getAuthToken());
+
     if(!TokenService.hasAuthToken()) {
-      window.location('/');
+      console.log('sending you back to a safe place');
+      window.location = '/';
       return;
     }
 

@@ -23,7 +23,7 @@ class ProjectPage extends Component {
     console.log('do they have a token? ', TokenService.hasAuthToken());
     console.log('the token is, ',TokenService.getAuthToken());
     if(!TokenService.hasAuthToken()) {
-      window.location('/');
+      window.location = '/';
       return;
     }
 

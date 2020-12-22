@@ -23,9 +23,7 @@ class Login extends Component {
       if(res.error){
         throw res;
       }
-      if(!res.ok){
-        console.log('SPOOKY >>>>>>>>>>>>', res);
-      }
+
       console.log('login response:   ',res);
       TokenService.saveAuthToken(res.authToken)
       TokenService.saveUserId(res.userId)

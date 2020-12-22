@@ -36,9 +36,8 @@ class Register extends Component {
         if(res.error){
           throw res;
         }
-        if(!res.ok){
-          console.log('SPOOKY >>>>>>>>>>>>', res);
-        }
+
+        console.log(res);
         TokenService.saveAuthToken(res.authToken);
         TokenService.saveUserId(res.id);
         window.location = '/'

@@ -11,7 +11,8 @@ const TokenService = {
     return window.sessionStorage.getItem(config.TOKEN_KEY);
   },
   hasAuthToken() {
-    return !!TokenService.getAuthToken();
+    const tempToken = TokenService.getAuthToken();
+    return (!!tempToken && tempToken !== 'undefined');
   },
   clearAuthToken() {
     window.sessionStorage.removeItem(config.TOKEN_KEY)
