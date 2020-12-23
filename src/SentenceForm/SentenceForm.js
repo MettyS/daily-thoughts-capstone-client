@@ -40,6 +40,7 @@ class SentenceForm extends Component {
       }
       console.log('YAY I THINK WE DID IT, the added sentence is: ', res);
       this.props.handleNewSentence(res);
+      document.getElementById('content'). value =''
       //window.location('/project-list');
     })
     .catch( er => {

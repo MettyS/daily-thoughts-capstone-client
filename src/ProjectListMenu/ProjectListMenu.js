@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import config from '../config';
 import TokenService from '../services/TokenService';
+import './ProjectListMenu.css'
 //import { Link } from 'react-router-dom';
 
 class ProjectList extends Component {

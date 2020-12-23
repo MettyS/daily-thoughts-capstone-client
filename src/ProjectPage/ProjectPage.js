@@ -90,8 +90,9 @@ class ProjectPage extends Component {
         <NavBar />
         <div className='project-contents'>
           <Paragraph sentences={this.state.sentences} />
-          <SentenceList loading={this.state.loading} sentences={this.state.sentences} />
           <SentenceForm handleNewSentence={(sen) => {this.handleNewSentence(sen)}} projectId={this.state.projectId} />
+          <SentenceList loading={this.state.loading} sentences={this.state.sentences} />
+          
         </div>
       </div>
     );

@@ -159,26 +159,26 @@ class Register extends Component {
       <form className='register-form' onSubmit={this.handleSubmit}>
         <div className='input-fields'>
         {submitMessage}
+        {nicknameMessage}
         <div className='form-field'>
-          {nicknameMessage}
           <label htmlFor='register-nickname'>Nickname</label>
           <input name='nickname' type='text' placeholder='BobbyJoe' id='register-nickname' onChange={e => this.setState({nickname: {value: e.target.value, touched: true} })} required />
         </div>
 
-        <div className='form-field'>
         {emailMessage}
+        <div className='form-field'>
           <label htmlFor='register-email'>Email</label>
           <input name='email' type='text' placeholder='BobbyJoe@gmail.com' id='register-email' onChange={e => this.setState({email: {value: e.target.value, touched: true} })} required />
         </div>
 
-        <div className='form-field'>
         {passwordMessage}
+        <div className='form-field'>
           <label htmlFor='register-password'>Password</label>
           <input name='password' type='text' id='register-password' onChange={e => this.setState({password: {value: e.target.value, touched: true} })} required />
         </div>
 
-        <div className='form-field'>
         {passwordMatchMessage}
+        <div className='form-field'>
           <label htmlFor='register-repeat-password'>Repeat Password</label>
           <input name='repeat-password' type='text' id='register-repeat-password' onChange={e => this.setState({repeatPassword: {value: e.target.value, touched: true} })} required />
         </div>
