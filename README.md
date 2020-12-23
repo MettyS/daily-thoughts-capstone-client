@@ -95,7 +95,7 @@ The app's functionality includes:
 ### 5. Wireframes (to do now)
 Landing Page
 :-------------------------:
-![Landing Page](./github-images/wireframes/landing-page-wireframe.jpg)
+![Landing Page](./github-images/wireframes/landing-page-wireframe.png)
 
 Register Page
 :-------------------------:
